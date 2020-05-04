@@ -20,6 +20,8 @@ public class LoginPage extends PageBase{
     }
 
     public void loginWithEmailAndPass(String Email,String pass){
+        typeInTextBox(emailTextBox,"");
+        typeInTextBox(passwordTextBox,"");
         typeInTextBox(emailTextBox,Email);
         typeInTextBox(passwordTextBox,pass);
         clickButton(loginButton);

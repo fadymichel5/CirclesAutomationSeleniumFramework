@@ -1,7 +1,6 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
@@ -15,12 +14,11 @@ public class LoginTests extends TestBase {
     String fadyITFFOUSER_pass = "P@ssw0rdd";
 
 
-    public void sureThatUserLogoutAsFFO(){
+    private void sureThatUserLogoutAsFFO(){
         loginPage=new LoginPage(webDriver);
         loginPage.loginWithEmailAndPass(fadyITFFOUSER_mail,fadyITFFOUSER_pass);
         homePage=new HomePage(webDriver);
-        homePage.clickTopIconMenu();
-        homePage.clickSwitchRole();
+        homePage.goToSwitchRolePage();
         SwitchRolePage switchRolePage = new SwitchRolePage(webDriver);
         switchRolePage.switchToFFO();
         homePage.LogoutFromAccount();
@@ -32,10 +30,10 @@ public class LoginTests extends TestBase {
     public void userCanLoginAsFFO(){
         sureThatUserLogoutAsFFO();
         loginPage=new LoginPage(webDriver);
-        loginPage.loginWithEmailAndPass("fady.michel6@gmail.com","P@ssw0rdd");
+        loginPage.loginWithEmailAndPass(fadyITFFOUSER_mail,fadyITFFOUSER_pass);
         homePage=new HomePage(webDriver);
         System.out.println("Home Icons (As FFO) is " + homePage.mainMenuIcons.size());
-        Assert.assertEquals(homePage.mainMenuIcons.size(),13);
+        Assert.assertTrue(homePage.mainMenuIcons.get(3).getText().equals("Future Jobs"));
         homePage.LogoutFromAccount();
     }
 
@@ -43,10 +41,9 @@ public class LoginTests extends TestBase {
     public void sureThatUserLogoutAsUser(){
 
         loginPage=new LoginPage(webDriver);
-        loginPage.loginWithEmailAndPass("fady.michel6@gmail.com","P@ssw0rdd");
+        loginPage.loginWithEmailAndPass(fadyITFFOUSER_mail,fadyITFFOUSER_pass);
         homePage=new HomePage(webDriver);
-        homePage.clickTopIconMenu();
-        homePage.clickSwitchRole();
+        homePage.goToSwitchRolePage();
         SwitchRolePage switchRolePage = new SwitchRolePage(webDriver);
         switchRolePage.switchUser();
         homePage.LogoutFromAccount();
@@ -54,7 +51,7 @@ public class LoginTests extends TestBase {
 
 
 
-    @Test
+    @Test( enabled=true )
     public void userCanLoginAsUser(){
         sureThatUserLogoutAsUser();
         loginPage=new LoginPage(webDriver);
@@ -62,7 +59,7 @@ public class LoginTests extends TestBase {
         homePage=new HomePage(webDriver);
         //Assert.assertEquals(homePage.ToolBoxButton.getText(),"Toolbox");
         System.out.println("Home Icons (As User) is " + homePage.mainMenuIcons.size());
-        Assert.assertEquals(homePage.mainMenuIcons.size(),12);
+        Assert.assertFalse(homePage.mainMenuIcons.get(3).getText().equals("Future Jobs"));
         homePage.LogoutFromAccount();
     }
 

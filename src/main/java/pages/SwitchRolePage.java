@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SwitchRolePage extends PageBase {
 
-    @FindBy(xpath = "//span[@class='filter-option pull-left']")
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle btn-default']")
     public WebElement menuOfRoles;
 
     @FindBy(xpath = "//li[@data-original-index='0']")
@@ -18,7 +18,7 @@ public class SwitchRolePage extends PageBase {
     @FindBy(xpath = "//li[@data-original-index='2']")
     public WebElement userOption;
 
-    @FindBy(xpath = "//button[@class='btn  brand_primary-btn custom_save-btn  btn-elevate ']")
+    @FindBy(id = "kt_login_signup_cancel")
     public WebElement saveButton;
 
     public SwitchRolePage(WebDriver webDriver) {

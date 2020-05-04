@@ -19,7 +19,7 @@ public class TraningTests extends TestBase {
         homePage=new HomePage(webDriver);
         System.out.println("Home Icons (As User) is " + homePage.mainMenuIcons.size());
         Assert.assertEquals(homePage.mainMenuIcons.size(),12);
-        homePage.clickTopIconMenu();
+        homePage.goToSwitchRolePage();
         homePage.clickLogout();
     }
 
@@ -29,11 +29,10 @@ public class TraningTests extends TestBase {
         loginPage=new LoginPage(webDriver);
         loginPage.loginWithEmailAndPass("fady.michel6@gmail.com","P@ssw0rdd");
         homePage=new HomePage(webDriver);
-        homePage.clickTopIconMenu();
-        homePage.clickSwitchRole();
+        homePage.goToSwitchRolePage();
         SwitchRolePage switchRolePage = new SwitchRolePage(webDriver);
         switchRolePage.switchUser();
-        homePage.clickTopIconMenu();
+        homePage.goToSwitchRolePage();
         homePage.clickLogout();
     }
 

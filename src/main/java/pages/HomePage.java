@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -25,23 +24,32 @@ public class HomePage extends PageBase {
     @FindBy(id = "btn-logOut")
     public  WebElement logoutButton;
 
-    @FindBy(xpath = "//ul[@class='kt-menu__nav main-nav brand-svg-menu-icon-fill']/li")
+    @FindBy(xpath = "//ul[@class='kt-menu__nav main-nav brand-svg-menu-icon-fill']/*[not(self::li[@id])]/a/span")
     public List<WebElement> mainMenuIcons ;
 
 
     public void clickLogout() {clickButton(logoutButton);}
 
-    public void clickSwitchRole(){
+    private void clickSwitchRole(){
         clickButton(switchRoleButton);
     }
 
-    public void clickTopIconMenu(){
+    private void clickTopIconMenu(){
         clickButton(profileTopIcon);
     }
 
     public void LogoutFromAccount() {
         clickTopIconMenu();
         clickLogout();
+    }
+
+    public void goToSwitchRolePage() {
+        clickTopIconMenu();
+        clickSwitchRole();
+    }
+
+    public void goToTrainingPage(){
+        //clickButton(mainMenuIcons.get());
     }
 
     public HomePage(WebDriver webDriver) {
