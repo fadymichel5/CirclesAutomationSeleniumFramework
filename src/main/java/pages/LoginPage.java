@@ -24,7 +24,8 @@ public class LoginPage extends PageBase{
         typeInTextBox(passwordTextBox,"");
         typeInTextBox(emailTextBox,Email);
         typeInTextBox(passwordTextBox,pass);
-        clickButton(loginButton);
+        pressEnter(passwordTextBox);
+        //clickButton(loginButton);
     }
 
 }

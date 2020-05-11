@@ -3,14 +3,17 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Sleeper;
 
+import java.awt.*;
+import java.sql.Time;
 import java.util.List;
 
 public class HomePage extends PageBase {
 
-    private WebDriver webDriver;
 
-
+    @FindBy(tagName = "html")
+    WebElement body;
 
     @FindBy(xpath = "//div[@class='kt-header__topbar-user']")
     public WebElement profileTopIconAdminView;
@@ -22,19 +25,30 @@ public class HomePage extends PageBase {
     public WebElement switchRoleButton;
 
     @FindBy(id = "btn-logOut")
-    public  WebElement logoutButton;
+    public WebElement logoutButton;
+
+    @FindBy(xpath = "//a[@href=\'/FFO/Training/Index\']")
+    public WebElement TraningLink;
 
     @FindBy(xpath = "//ul[@class='kt-menu__nav main-nav brand-svg-menu-icon-fill']/*[not(self::li[@id])]/a/span")
-    public List<WebElement> mainMenuIcons ;
+    public List<WebElement> mainMenuIcons;
+
+    @FindBy(id = "autoNavMore")
+    WebElement autoMoreButton;
+
+    @FindBy(xpath = "//*[@id=\"kt_content\"]/div/div[6]/div/div[1]/div/h3")
+    public WebElement MostRecentInitiatives;
 
 
-    public void clickLogout() {clickButton(logoutButton);}
+    private void clickLogout() {
+        clickButton(logoutButton);
+    }
 
-    private void clickSwitchRole(){
+    private void clickSwitchRole() {
         clickButton(switchRoleButton);
     }
 
-    private void clickTopIconMenu(){
+    private void clickTopIconMenu() {
         clickButton(profileTopIcon);
     }
 
@@ -48,16 +62,21 @@ public class HomePage extends PageBase {
         clickSwitchRole();
     }
 
-    public void goToTrainingPage(){
-        //clickButton(mainMenuIcons.get());
+    public void goToTrainingPage() {
+        for (WebElement icon : mainMenuIcons) {
+            if (icon.getText().contains("Training")) {
+                clickButton(icon);
+                return;
+            }
+        }
+        hoverButton(autoMoreButton);
+        clickButton(TraningLink);
     }
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
-
-
-
 
 
 }

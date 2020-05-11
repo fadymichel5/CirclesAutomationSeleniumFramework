@@ -10,8 +10,7 @@ public class LoginTests extends TestBase {
     HomePage homePage;
     LoginPage loginPage;
 
-    String fadyITFFOUSER_mail ="fady.michel6@gmail.com";
-    String fadyITFFOUSER_pass = "P@ssw0rdd";
+
 
 
     private void sureThatUserLogoutAsFFO(){
@@ -26,14 +25,14 @@ public class LoginTests extends TestBase {
 
 
 
-    @Test
+    @Test(enabled = true)
     public void userCanLoginAsFFO(){
         sureThatUserLogoutAsFFO();
         loginPage=new LoginPage(webDriver);
         loginPage.loginWithEmailAndPass(fadyITFFOUSER_mail,fadyITFFOUSER_pass);
         homePage=new HomePage(webDriver);
         System.out.println("Home Icons (As FFO) is " + homePage.mainMenuIcons.size());
-        Assert.assertTrue(homePage.mainMenuIcons.get(3).getText().equals("Future Jobs"));
+        Assert.assertTrue(homePage.mainMenuIcons.get(7).getText().contains("Resources"));
         homePage.LogoutFromAccount();
     }
 
@@ -59,7 +58,8 @@ public class LoginTests extends TestBase {
         homePage=new HomePage(webDriver);
         //Assert.assertEquals(homePage.ToolBoxButton.getText(),"Toolbox");
         System.out.println("Home Icons (As User) is " + homePage.mainMenuIcons.size());
-        Assert.assertFalse(homePage.mainMenuIcons.get(3).getText().equals("Future Jobs"));
+        System.out.println("The 8th element is"+homePage.mainMenuIcons.get(7).getText());
+        Assert.assertTrue(homePage.mainMenuIcons.get(7).getText().contains("Storms"));
         homePage.LogoutFromAccount();
     }
 

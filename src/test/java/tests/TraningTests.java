@@ -1,39 +1,60 @@
 package tests;
 
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SwitchRolePage;
+import pages.TraningPage;
+
+import java.awt.*;
 
 public class TraningTests extends TestBase {
 
     HomePage homePage;
     LoginPage loginPage;
+    TraningPage traningPage;
 
-    @Test
-    public void userCanLoginAsUser(){
-        sureThatUserLogoutAsUser();
-        loginPage=new LoginPage(webDriver);
-        loginPage.loginWithEmailAndPass("fady.michel6@gmail.com","P@ssw0rdd");
+    @BeforeClass
+    public void userLoggedin() throws InterruptedException, AWTException {
+        loginPage= new LoginPage(webDriver);
+        loginPage.loginWithEmailAndPass(fadyITFFOUSER_mail,fadyITFFOUSER_pass);
+        //System.out.println(webDriver);
         homePage=new HomePage(webDriver);
-        System.out.println("Home Icons (As User) is " + homePage.mainMenuIcons.size());
-        Assert.assertEquals(homePage.mainMenuIcons.size(),12);
-        homePage.goToSwitchRolePage();
-        homePage.clickLogout();
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver,5);
+        webDriverWait.until(ExpectedConditions.visibilityOf(homePage.profileTopIcon));
+        homePage.goToTrainingPage();
+        traningPage=new TraningPage(webDriver);
+
     }
 
+    @Test(enabled = false)
+    public void userGoToTraining(){
+        Assert.assertTrue(traningPage.HeadTitle.getText().contains("Train"));
+    }
+    @Test(enabled = false)
+    public void usergobacktohomefromtraning(){
 
-    public void sureThatUserLogoutAsUser(){
+        webDriver.navigate().back();
+        Assert.assertTrue(homePage.MostRecentInitiatives.isDisplayed());
 
-        loginPage=new LoginPage(webDriver);
-        loginPage.loginWithEmailAndPass("fady.michel6@gmail.com","P@ssw0rdd");
-        homePage=new HomePage(webDriver);
-        homePage.goToSwitchRolePage();
-        SwitchRolePage switchRolePage = new SwitchRolePage(webDriver);
-        switchRolePage.switchUser();
-        homePage.goToSwitchRolePage();
-        homePage.clickLogout();
+
+    }
+
+    @Test void changefromCatViewToCoursesView(){
+        traningPage.changeBrowseByView();
+        Assert.assertTrue(traningPage.addCourseButton.isDisplayed());
+    }
+
+    @AfterMethod
+    public void goToMainPAge(){
+        homePage.goToTrainingPage();
     }
 
 
