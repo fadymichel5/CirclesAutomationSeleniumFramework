@@ -11,9 +11,7 @@ public class LoginTests extends TestBase {
     LoginPage loginPage;
 
 
-
-
-    private void sureThatUserLogoutAsFFO(){
+    public void sureThatUserLogoutAsFFO() {
         loginPage=new LoginPage(webDriver);
         loginPage.loginWithEmailAndPass(fadyITFFOUSER_mail,fadyITFFOUSER_pass);
         homePage=new HomePage(webDriver);

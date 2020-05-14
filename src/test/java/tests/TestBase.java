@@ -37,7 +37,7 @@ public class TestBase {
             webDriver= new InternetExplorerDriver(options);
         }
 
-        //webDriver.manage().window().maximize();
+        webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); // Wait for 30 seconds
         webDriver.get("https://circlesqc.bnsights.com/");
         //loginPage = new LoginPage(webDriver);

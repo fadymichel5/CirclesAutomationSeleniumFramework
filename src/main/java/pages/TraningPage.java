@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +32,11 @@ public class TraningPage extends PageBase {
     public void changeBrowseByView(){
         clickButton(dropDownBrowseBy);
         clickButton(getDropDownBrowseByItem);
+    }
+
+    public void goToAddCoursePage() {
+        changeBrowseByView();
+        clickButton(addCourseButton);
     }
 
 

@@ -3,10 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Sleeper;
 
-import java.awt.*;
-import java.sql.Time;
 import java.util.List;
 
 public class HomePage extends PageBase {
