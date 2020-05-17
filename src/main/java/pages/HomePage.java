@@ -60,14 +60,14 @@ public class HomePage extends PageBase {
     }
 
     public void goToTrainingPage() {
+
         for (WebElement icon : mainMenuIcons) {
             if (icon.getText().contains("Training")) {
                 clickButton(icon);
                 return;
             }
         }
-        hoverButton(autoMoreButton);
-        clickButton(TraningLink);
+        webDriver.get("https://circlesqc.bnsights.com/FFO/Training");
     }
 
 

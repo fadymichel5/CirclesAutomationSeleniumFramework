@@ -59,7 +59,7 @@ public class TraningTests extends TestBase {
     }
 
     @Test
-    void FFOAddDummyCourseData() {
+    void FFOAddDummyCourseData() throws AWTException {
         traningPage.goToAddCoursePage();
         addCoursePage = new AddCoursePage(webDriver);
         addCoursePage.addDummyCourseData();
