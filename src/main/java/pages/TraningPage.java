@@ -16,6 +16,9 @@ public class TraningPage extends PageBase {
     @FindBy(css = "button.dropdown-toggle")
     WebElement dropDownBrowseBy;
 
+    @FindBy(xpath = "//a[@href='/FFO/Home/Index']")
+    WebElement HomeLink;
+
     @FindBy(css = "button.dropdown-item.filters-show")
     WebElement getDropDownBrowseByItem;
 
@@ -32,6 +35,10 @@ public class TraningPage extends PageBase {
     public void changeBrowseByView(){
         clickButton(dropDownBrowseBy);
         clickButton(getDropDownBrowseByItem);
+    }
+
+    public void gotoHomePage() {
+        clickButton(HomeLink);
     }
 
     public void goToAddCoursePage() {

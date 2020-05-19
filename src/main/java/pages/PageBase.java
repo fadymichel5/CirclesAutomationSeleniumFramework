@@ -1,13 +1,12 @@
 package pages;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.WebDriver;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class PageBase {
@@ -23,25 +22,28 @@ public class PageBase {
 
     protected void hoverButton(WebElement webElement){
         //System.out.println(webDriver);
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
+        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         Actions actions = new Actions(webDriver);
         actions.moveToElement(webElement).perform();
     }
 
     protected void pressEnter(WebElement webElement){
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
+        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(Keys.ENTER);
     }
 
-    protected void zoomIn(WebElement webElement) {
-        webElement.sendKeys(Keys.chord(Keys.CONTROL,Keys.ADD));
-    }
 
-
-
-    protected static void clickButton(WebElement webElement){
+    protected void clickButton(WebElement webElement) {
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
+        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.click();
     }
 
-    protected static void typeInTextBox(WebElement webElement,String string){
+    protected void typeInTextBox(WebElement webElement, String string) {
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
+        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(string);
     }
 }

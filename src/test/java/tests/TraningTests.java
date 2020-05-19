@@ -1,15 +1,10 @@
 package tests;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.AddCoursePage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.TraningPage;
+import pages.*;
 
 import java.awt.*;
 
@@ -17,17 +12,20 @@ public class TraningTests extends TestBase {
 
     HomePage homePage;
     LoginPage loginPage;
+    SwitchRolePage switchRolePage;
     TraningPage traningPage;
     AddCoursePage addCoursePage;
 
+
     @BeforeClass
-    public void userLoggedin() throws InterruptedException, AWTException {
+    public void userLoggedIn() throws InterruptedException {
         loginPage= new LoginPage(webDriver);
         loginPage.loginWithEmailAndPass(fadyITFFOUSER_mail,fadyITFFOUSER_pass);
-        //System.out.println(webDriver);
         homePage=new HomePage(webDriver);
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver,5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(homePage.profileTopIcon));
+        Thread.sleep(5000);
+        homePage.goToSwitchRolePage();
+        switchRolePage = new SwitchRolePage(webDriver);
+        switchRolePage.switchToFFO();
         homePage.goToTrainingPage();
         traningPage=new TraningPage(webDriver);
 
@@ -38,20 +36,22 @@ public class TraningTests extends TestBase {
         Assert.assertTrue(traningPage.HeadTitle.getText().contains("Train"));
     }
     @Test(enabled = false)
-    public void userGobBcktT0HomeFromTraining() {
-
+    public void userGobBackToHomeFromTraining() {
+        traningPage.gotoHomePage();
+        homePage = new HomePage(webDriver);
+        homePage.goToTrainingPage();
         webDriver.navigate().back();
         Assert.assertTrue(homePage.MostRecentInitiatives.isDisplayed());
     }
 
     @Test(enabled = false)
-    void FFOchangeViewFromCatViewToCoursesView() {
+    void FFOChangeViewFromCatViewToCoursesView() {
 
         traningPage.changeBrowseByView();
         Assert.assertTrue(traningPage.addCourseButton.isDisplayed());
     }
 
-    @Test
+    @Test(enabled = false)
     void FFFCanGoToAddCoursePage() {
         traningPage.goToAddCoursePage();
         addCoursePage = new AddCoursePage(webDriver);
@@ -59,15 +59,11 @@ public class TraningTests extends TestBase {
     }
 
     @Test
-    void FFOAddDummyCourseData() throws AWTException {
+    void FFOAddDummyCourseData() throws AWTException, InterruptedException {
         traningPage.goToAddCoursePage();
         addCoursePage = new AddCoursePage(webDriver);
         addCoursePage.addDummyCourseData();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @AfterMethod

@@ -42,10 +42,12 @@ public class HomePage extends PageBase {
     }
 
     private void clickSwitchRole() {
+        System.out.println("Click Switch Role");
         clickButton(switchRoleButton);
     }
 
     private void clickTopIconMenu() {
+        System.out.println("Click profile Top Icon Menu");
         clickButton(profileTopIcon);
     }
 
@@ -64,6 +66,7 @@ public class HomePage extends PageBase {
         for (WebElement icon : mainMenuIcons) {
             if (icon.getText().contains("Training")) {
                 clickButton(icon);
+                System.out.println("I found it on the main menu");
                 return;
             }
         }

@@ -1,13 +1,15 @@
 package tests;
 
-import helpers.TestHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.util.concurrent.TimeUnit;
 
@@ -51,10 +53,10 @@ public class TestBase {
     }
 
 
-    @AfterMethod
+  /*  @AfterMethod
     public void analyzeLog(){
         System.out.println("Analyze the log after the test case");
         TestHelper.analyzeLog(webDriver);
-    }
+    }*/
 
 }

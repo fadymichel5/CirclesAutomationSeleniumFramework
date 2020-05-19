@@ -70,6 +70,8 @@ public class AddCoursePage extends PageBase {
     @FindBy(css = "span.switchery.switchery-small")
     WebElement toggleButton;
 
+    Boolean visible = false;
+
     Lorem lorem = LoremIpsum.getInstance();
 
 
@@ -77,28 +79,36 @@ public class AddCoursePage extends PageBase {
         super(webDriver);
     }
 
-    public void addDummyCourseData() throws AWTException {
+    public void addDummyCourseData() throws AWTException, InterruptedException {
 
         addCourseName("Course 1 By Sel" + lorem.getWords(5, 10), "الكورس الأول بالسيل");
-        typeInTextBox(courseSummaryEnglish, "Summary of course 1 by sel\n" + lorem.getParagraphs(1, 1));
-        typeInTextBox(courseSummaryArabic, PageHelper.arabicChar(100));
-        typeInTextBox(courseObjectiveEnglish, lorem.getParagraphs(1, 1));
-        typeInTextBox(courseObjectiveArabic, PageHelper.arabicChar(100));
-        typeInTextBox(coursePrerequisiteEnglish, lorem.getParagraphs(1, 1));
-        typeInTextBox(coursePrerequisiteArabic, PageHelper.arabicChar(100));
-
+        addCourseSummary("Summary of course 1 by sel\n" + lorem.getParagraphs(1, 1), PageHelper.arabicChar(100));
+        addCourseObjective(lorem.getParagraphs(1, 1), PageHelper.arabicChar(100));
+        addCoursePrerequisite(lorem.getParagraphs(1, 1), PageHelper.arabicChar(100));
         uploadCoursePhoto("course1.jpg");
-
-        clickButton(savePhotoButton);
-
-        clickButton(categoryDropDown);
-
-        clickButton(dropDownList.get(1));
-
+        selectCategory(1);
         addCourseDuration("77", "77");
+        makeItVisible();
 
-        clickButton(toggleButton);
+    }
 
+    private void makeItVisible() {
+        if (!visible) {
+            visible = true;
+            clickButton(toggleButton);
+        }
+    }
+
+    private void makeItNotVisible() {
+        if (visible) {
+            visible = false;
+            clickButton(toggleButton);
+        }
+    }
+
+    private void selectCategory(int categoryIndex) {
+        clickButton(categoryDropDown);
+        clickButton(dropDownList.get(categoryIndex));
     }
 
     private void addCourseName(String englishName, String arabicName) {
@@ -106,7 +116,22 @@ public class AddCoursePage extends PageBase {
         typeInTextBox(courseTitleArabic, arabicName);
     }
 
-    private void uploadCoursePhoto(String imageName) throws AWTException {
+    private void addCourseSummary(String englishSummary, String arabicSummary) {
+        typeInTextBox(courseSummaryEnglish, englishSummary);
+        typeInTextBox(courseSummaryArabic, arabicSummary);
+    }
+
+    private void addCourseObjective(String englishObjective, String arabicObjective) {
+        typeInTextBox(courseObjectiveEnglish, englishObjective);
+        typeInTextBox(courseObjectiveArabic, arabicObjective);
+    }
+
+    private void addCoursePrerequisite(String englishPrerequisite, String arabicPrerequisite) {
+        typeInTextBox(coursePrerequisiteEnglish, englishPrerequisite);
+        typeInTextBox(coursePrerequisiteArabic, arabicPrerequisite);
+    }
+
+    private void uploadCoursePhoto(String imageName) throws AWTException, InterruptedException {
         clickButton(imageUploadIcon);
         Robot robot = new Robot();
         String imagePath = System.getProperty("user.dir") + "\\Uploads\\" + imageName;
@@ -127,8 +152,14 @@ public class AddCoursePage extends PageBase {
 
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
-        robot.delay(1000);
+        robot.delay(2000);
 
+        if (savePhotoButton.isDisplayed()) {
+            System.out.println("Save Photo displayed after first try of upload");
+            clickButton(savePhotoButton);
+            return;
+        }
+        System.out.println("Save Photo didn't display after first try of upload");
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
         robot.keyRelease(KeyEvent.VK_CONTROL);
@@ -138,6 +169,9 @@ public class AddCoursePage extends PageBase {
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
         robot.delay(1000);
+
+        clickButton(savePhotoButton);
+        Thread.sleep(5000);
     }
 
     private void addCourseDuration(String hours, String minutes) {
