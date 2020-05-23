@@ -70,6 +70,9 @@ public class AddCoursePage extends PageBase {
     @FindBy(css = "span.switchery.switchery-small")
     WebElement toggleButton;
 
+    @FindBy(xpath = "//*[@id=\"kt_content\"]/div/form/div[5]/div/button[2]")
+    WebElement addCourseButton;
+
     Boolean visible = false;
 
     Lorem lorem = LoremIpsum.getInstance();
@@ -81,14 +84,15 @@ public class AddCoursePage extends PageBase {
 
     public void addDummyCourseData() throws AWTException, InterruptedException {
 
-        addCourseName("Course 1 By Sel" + lorem.getWords(5, 10), "الكورس الأول بالسيل");
-        addCourseSummary("Summary of course 1 by sel\n" + lorem.getParagraphs(1, 1), PageHelper.arabicChar(100));
-        addCourseObjective(lorem.getParagraphs(1, 1), PageHelper.arabicChar(100));
-        addCoursePrerequisite(lorem.getParagraphs(1, 1), PageHelper.arabicChar(100));
+        addCourseName("Course 5 By Sel" + lorem.getWords(5, 10), "الكورس الأول بالسيل");
+        addCourseSummary("Summary of course 5 by sel \n" + lorem.getParagraphs(3, 5), PageHelper.arabicChar(1000));
+        addCourseObjective("Objective of course 5 by sel \n" + lorem.getParagraphs(3, 5), PageHelper.arabicChar(1000));
+        addCoursePrerequisite("Prerequisite of course 5 by sel \n" + lorem.getParagraphs(3, 5), PageHelper.arabicChar(1000));
         uploadCoursePhoto("course1.jpg");
-        selectCategory(1);
-        addCourseDuration("77", "77");
+        selectCategory("Cat Test 3");
+        addCourseDuration("77", "59");
         makeItVisible();
+        clickButton(addCourseButton);
 
     }
 
@@ -109,6 +113,15 @@ public class AddCoursePage extends PageBase {
     private void selectCategory(int categoryIndex) {
         clickButton(categoryDropDown);
         clickButton(dropDownList.get(categoryIndex));
+    }
+
+    private void selectCategory(String category) {
+        clickButton(categoryDropDown);
+        for (WebElement cat : dropDownList) {
+            if (cat.getText().contains(category))
+                clickButton(cat);
+        }
+
     }
 
     private void addCourseName(String englishName, String arabicName) {

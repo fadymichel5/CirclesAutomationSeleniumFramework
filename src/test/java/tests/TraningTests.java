@@ -63,6 +63,8 @@ public class TraningTests extends TestBase {
         traningPage.goToAddCoursePage();
         addCoursePage = new AddCoursePage(webDriver);
         addCoursePage.addDummyCourseData();
+        traningPage = new TraningPage(webDriver);
+        Assert.assertTrue(traningPage.coursesContains("Course 5"));
 
     }
 

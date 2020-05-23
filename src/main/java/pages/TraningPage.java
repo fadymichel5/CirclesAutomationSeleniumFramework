@@ -13,6 +13,12 @@ public class TraningPage extends PageBase {
     @FindBy(xpath = "//div[@class='kt-portlet__body']/div/div/span")
     List<WebElement> catCardsList;
 
+    @FindBy(xpath = "//div[@class='col-lg-4 courses d-flex']")
+    List<WebElement> courseCardsList;
+
+    @FindBy(xpath = "//div[@class='col-lg-4 courses d-flex']/div/div/div/div/div/a/h5")
+    List<WebElement> courseTitleCardsList;
+
     @FindBy(css = "button.dropdown-toggle")
     WebElement dropDownBrowseBy;
 
@@ -39,6 +45,17 @@ public class TraningPage extends PageBase {
 
     public void gotoHomePage() {
         clickButton(HomeLink);
+    }
+
+    public boolean coursesContains(String text) {
+        for (WebElement course : courseTitleCardsList) {
+            if (course.getText().contains(text)) {
+                System.out.println("I found " + text + " In the courses");
+                return true;
+            }
+        }
+        System.out.println("I didn't find " + text + " In the courses");
+        return false;
     }
 
     public void goToAddCoursePage() {
