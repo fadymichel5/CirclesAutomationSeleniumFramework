@@ -118,9 +118,10 @@ public class AddCoursePage extends PageBase {
     private void selectCategory(String category) {
         clickButton(categoryDropDown);
         for (WebElement cat : dropDownList) {
-            if (cat.getText().contains(category))
+            if (cat.getText().contains(category)) {
                 clickButton(cat);
-            return;
+                return;
+            }
         }
 
     }
