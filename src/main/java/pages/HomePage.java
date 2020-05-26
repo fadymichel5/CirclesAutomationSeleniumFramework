@@ -52,11 +52,13 @@ public class HomePage extends PageBase {
     }
 
     public void LogoutFromAccount() {
+        System.out.println("Logout from the Account");
         clickTopIconMenu();
         clickLogout();
     }
 
     public void goToSwitchRolePage() {
+        System.out.println("Go to switch role page");
         clickTopIconMenu();
         clickSwitchRole();
     }

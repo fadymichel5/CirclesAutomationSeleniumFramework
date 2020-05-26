@@ -82,15 +82,15 @@ public class AddCoursePage extends PageBase {
         super(webDriver);
     }
 
-    public void addDummyCourseData() throws AWTException, InterruptedException {
+    public void addDummyCourseData(String courseNameInEnglish, String courseNameInArabic) throws AWTException, InterruptedException {
 
-        addCourseName("Course 5 By Sel" + lorem.getWords(5, 10), "الكورس الأول بالسيل");
-        addCourseSummary("Summary of course 5 by sel \n" + lorem.getParagraphs(3, 5), PageHelper.arabicChar(1000));
-        addCourseObjective("Objective of course 5 by sel \n" + lorem.getParagraphs(3, 5), PageHelper.arabicChar(1000));
-        addCoursePrerequisite("Prerequisite of course 5 by sel \n" + lorem.getParagraphs(3, 5), PageHelper.arabicChar(1000));
+        addCourseName(courseNameInEnglish + " " + lorem.getWords(5, 10), courseNameInArabic + " " + PageHelper.arabicChar(30));
+        addCourseSummary("Summary of " + courseNameInEnglish + " \n" + lorem.getParagraphs(3, 5), " ملخص " + courseNameInArabic + PageHelper.arabicChar(2000));
+        addCourseObjective("Objective of " + courseNameInEnglish + " \n" + lorem.getParagraphs(3, 5), " الهدف " + courseNameInArabic + PageHelper.arabicChar(2000));
+        addCoursePrerequisite("Prerequisite of " + courseNameInEnglish + " \n" + lorem.getParagraphs(3, 5), " متطلبات " + courseNameInArabic + PageHelper.arabicChar(2000));
         uploadCoursePhoto("course1.jpg");
-        selectCategory("Cat Test 3");
-        addCourseDuration("77", "59");
+        selectCategory("12");
+        addCourseDuration("3", "59");
         makeItVisible();
         clickButton(addCourseButton);
 

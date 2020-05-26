@@ -62,9 +62,9 @@ public class TraningTests extends TestBase {
     void FFOAddDummyCourseData() throws AWTException, InterruptedException {
         traningPage.goToAddCoursePage();
         addCoursePage = new AddCoursePage(webDriver);
-        addCoursePage.addDummyCourseData();
+        addCoursePage.addDummyCourseData("Test Automated 1", "تجريب مميكن 1");
         traningPage = new TraningPage(webDriver);
-        Assert.assertTrue(traningPage.coursesContains("Course 5"));
+        Assert.assertTrue(traningPage.coursesContains("Test Automated"));
 
     }
 

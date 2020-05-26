@@ -21,7 +21,6 @@ public class PageBase {
     }
 
     protected void hoverButton(WebElement webElement){
-        //System.out.println(webDriver);
         WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
         webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         Actions actions = new Actions(webDriver);
