@@ -120,6 +120,7 @@ public class AddCoursePage extends PageBase {
         for (WebElement cat : dropDownList) {
             if (cat.getText().contains(category))
                 clickButton(cat);
+            return;
         }
 
     }

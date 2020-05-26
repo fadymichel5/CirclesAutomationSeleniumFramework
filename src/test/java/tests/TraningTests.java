@@ -10,11 +10,11 @@ import java.awt.*;
 
 public class TraningTests extends TestBase {
 
-    HomePage homePage;
-    LoginPage loginPage;
-    SwitchRolePage switchRolePage;
-    TraningPage traningPage;
-    AddCoursePage addCoursePage;
+    private HomePage homePage;
+    private LoginPage loginPage;
+    private SwitchRolePage switchRolePage;
+    private TraningPage traningPage;
+    private AddCoursePage addCoursePage;
 
 
     @BeforeClass

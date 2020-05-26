@@ -12,7 +12,7 @@ public class LoginPage extends PageBase{
     private WebElement emailTextBox;
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement passwordTextBox;
-    @FindBy(xpath = "//button[@class='btn btn-pill kt-login__btn-primary-brand']")
+    @FindBy(css = "button.btn.btn-pill.kt-login__btn-primary-brand")
     private WebElement loginButton;
 
     public LoginPage(WebDriver webDriver) {
@@ -24,8 +24,8 @@ public class LoginPage extends PageBase{
         typeInTextBox(passwordTextBox,"");
         typeInTextBox(emailTextBox,Email);
         typeInTextBox(passwordTextBox,pass);
-        pressEnter(passwordTextBox);
-        //clickButton(loginButton);
+        //pressEnter(passwordTextBox);
+        clickButton(loginButton);
     }
 
 

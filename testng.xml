@@ -3,10 +3,9 @@
     <parameter name="browser" value="chrome"/>
     <test name="Test">
         <classes>
-            <class name ="tests.TraningTests"/>
+            <class name="tests.TraningTests"></class>
         </classes>
     </test>
-
 </suite>
 
 
