@@ -41,8 +41,10 @@ public class PageBase {
     }
 
     protected void typeInTextBox(WebElement webElement, String string) {
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
-        webElement.sendKeys(string);
+        if (string != null) {
+            WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
+            webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
+            webElement.sendKeys(string);
+        }
     }
 }

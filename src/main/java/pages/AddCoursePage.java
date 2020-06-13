@@ -1,8 +1,7 @@
 package pages;
 
 
-import com.thedeanda.lorem.Lorem;
-import com.thedeanda.lorem.LoremIpsum;
+import Helper.PageHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -75,7 +74,7 @@ public class AddCoursePage extends PageBase {
 
     Boolean visible = false;
 
-    Lorem lorem = LoremIpsum.getInstance();
+    //Lorem lorem = LoremIpsum.getInstance();
 
 
     public AddCoursePage(WebDriver webDriver) {
@@ -84,13 +83,13 @@ public class AddCoursePage extends PageBase {
 
     public void addDummyCourseData(String courseNameInEnglish, String courseNameInArabic) throws AWTException, InterruptedException {
 
-        addCourseName(courseNameInEnglish + " " + lorem.getWords(5, 10), courseNameInArabic + " " + PageHelper.arabicChar(30));
-        addCourseSummary("Summary of " + courseNameInEnglish + " \n" + lorem.getParagraphs(3, 5), " ملخص " + courseNameInArabic + PageHelper.arabicChar(2000));
-        addCourseObjective("Objective of " + courseNameInEnglish + " \n" + lorem.getParagraphs(3, 5), " الهدف " + courseNameInArabic + PageHelper.arabicChar(2000));
-        addCoursePrerequisite("Prerequisite of " + courseNameInEnglish + " \n" + lorem.getParagraphs(3, 5), " متطلبات " + courseNameInArabic + PageHelper.arabicChar(2000));
-        uploadCoursePhoto("course1.jpg");
-        selectCategory("12");
-        addCourseDuration("3", "59");
+        addCourseName(courseNameInEnglish + " " + PageHelper.englishWords(9), courseNameInArabic + " " + PageHelper.arabicChar(30));
+        addCourseSummary("Summary of " + courseNameInEnglish + " \n" + PageHelper.englishParagraph(4), " ملخص " + courseNameInArabic + PageHelper.arabicChar(2000));
+        addCourseObjective("Objective of " + courseNameInEnglish + " \n" + PageHelper.englishParagraph(4), " الهدف " + courseNameInArabic + PageHelper.arabicChar(2000));
+        addCoursePrerequisite("Prerequisite of " + courseNameInEnglish + " \n" + PageHelper.englishParagraph(4), " متطلبات " + courseNameInArabic + PageHelper.arabicChar(2000));
+        uploadCoursePhoto("avatar-blank.jpg");
+        selectCategory("4");
+        addCourseDuration("4", "00");
         makeItVisible();
         clickButton(addCourseButton);
 

@@ -36,6 +36,9 @@ public class HomePage extends PageBase {
     @FindBy(xpath = "//*[@id=\"kt_content\"]/div/div[6]/div/div[1]/div/h3")
     public WebElement MostRecentInitiatives;
 
+    public boolean verfiyIsFFO() {
+        return mainMenuIcons.get(7).getText().contains("Resources");
+    }
 
     private void clickLogout() {
         clickButton(logoutButton);

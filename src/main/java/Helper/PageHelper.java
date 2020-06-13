@@ -1,6 +1,11 @@
-package pages;
+package Helper;
+
+import com.thedeanda.lorem.Lorem;
+import com.thedeanda.lorem.LoremIpsum;
 
 public class PageHelper {
+
+    static Lorem lorem = LoremIpsum.getInstance();
 
     static String ArabicPara = "وبحلول وباستثناء تم فصل. وسوء أخرى لفرنسا ومن قد, وزارة لبلجيكا، تم أخذ! كل عُقر أدنى كلّ. إذ مكن عملية فرنسية المتّبعة, إذ دنو حقول نتيجة الأمور?\n" +
             "\n" +
@@ -52,6 +57,14 @@ public class PageHelper {
 
     public static String arabicChar(int num) {
         return ArabicPara.subSequence(0, num).toString();
+    }
+
+    public static String englishParagraph(int num) {
+        return lorem.getParagraphs(num - 1, num + 1);
+    }
+
+    public static String englishWords(int num) {
+        return lorem.getWords(num - 1, num + 1);
     }
 
 }

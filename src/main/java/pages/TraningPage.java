@@ -58,6 +58,20 @@ public class TraningPage extends PageBase {
         return false;
     }
 
+    public void goToCourse(String courseName) {
+        for (WebElement course : courseTitleCardsList) {
+            if (course.getText().contains(courseName)) {
+                System.out.println("I found " + courseName + " In the courses and I will click it");
+                clickButton(course);
+                return;
+
+            }
+        }
+        System.out.println("I didn't find " + courseName + " In the courses to go to it");
+
+
+    }
+
     public void goToAddCoursePage() {
         changeBrowseByView();
         clickButton(addCourseButton);
