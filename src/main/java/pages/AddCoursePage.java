@@ -84,12 +84,12 @@ public class AddCoursePage extends PageBase {
     public void addDummyCourseData(String courseNameInEnglish, String courseNameInArabic) throws AWTException, InterruptedException {
 
         addCourseName(courseNameInEnglish + " " + PageHelper.englishWords(9), courseNameInArabic + " " + PageHelper.arabicChar(30));
+        addCoursePrerequisite("Prerequisite of " + courseNameInEnglish + " \n" + PageHelper.englishParagraph(4), " متطلبات " + courseNameInArabic + PageHelper.arabicChar(2000));
         addCourseSummary("Summary of " + courseNameInEnglish + " \n" + PageHelper.englishParagraph(4), " ملخص " + courseNameInArabic + PageHelper.arabicChar(2000));
         addCourseObjective("Objective of " + courseNameInEnglish + " \n" + PageHelper.englishParagraph(4), " الهدف " + courseNameInArabic + PageHelper.arabicChar(2000));
-        addCoursePrerequisite("Prerequisite of " + courseNameInEnglish + " \n" + PageHelper.englishParagraph(4), " متطلبات " + courseNameInArabic + PageHelper.arabicChar(2000));
-        uploadCoursePhoto("avatar-blank.jpg");
+        uploadCoursePhoto("course1.jpg");
         selectCategory("4");
-        addCourseDuration("4", "00");
+        addCourseDuration("5", "00");
         makeItVisible();
         clickButton(addCourseButton);
 

@@ -94,17 +94,13 @@ public class CourseInfoPage extends PageBase {
         clickButton(yesConfirmDeleteButton);
     }
 
-    public boolean courseModuleIsPresented(String moduleName) throws InterruptedException {
-        if (loadMoreButton.isDisplayed()) {
-            clickButton(loadMoreButton);
-            Thread.sleep(2000);
-        }
+    public boolean courseModuleIsPresented(String moduleName) {
+
         System.out.println("Searching in modules for " + moduleName);
         for (WebElement module : modulesNames) {
-            System.out.println(module.getText());
+            //System.out.println(module.getText());
             if (module.getText().contains(moduleName)) {
-                System.out.println("Got the module and we will go to it");
-                //clickButton(module);
+                System.out.println("I Found " + module.getText());
                 return true;
             }
         }

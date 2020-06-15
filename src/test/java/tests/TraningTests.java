@@ -19,7 +19,7 @@ public class TraningTests extends TestBase {
     private SwitchRolePage switchRolePage;
     private TraningPage traningPage;
     private AddCoursePage addCoursePage;
-    String COURSE_NAME = "Shata String";
+    String COURSE_NAME = "Test Automated 5 habitant libero tincidunt fabulas";
     private CourseInfoPage courseInfoPage;
     private ModuleInfoPage moduleInfoPage;
 
@@ -67,41 +67,44 @@ public class TraningTests extends TestBase {
         Assert.assertTrue(addCoursePage.getTitle().contains("Add Course"));
     }
 
-    @Test(enabled = false)
+    @Test
     void FFOAddDummyCourseData() throws AWTException, InterruptedException {
         traningPage.goToAddCoursePage();
         addCoursePage = new AddCoursePage(webDriver);
-        addCoursePage.addDummyCourseData("Test Automated 1", "تجريب مميكن 1");
+        addCoursePage.addDummyCourseData("Test Automated 6", "تجريب مميكن 6");
         traningPage = new TraningPage(webDriver);
-        Assert.assertTrue(traningPage.coursesContains("Test Automated"));
+        Assert.assertTrue(traningPage.coursesContains("Test Automated 6"));
 
     }
 
     @Test
     void FFOCanAddModuleToAnyCourse() throws InterruptedException {
         traningPage.changeBrowseByView();
-        traningPage.goToCourse("Happy");
+        traningPage.goToCourse(COURSE_NAME);
         courseInfoPage = new CourseInfoPage(webDriver);
-        Assert.assertTrue(courseInfoPage.headCourseName().contains("Happy"));
+        Assert.assertTrue(courseInfoPage.headCourseName().contains(COURSE_NAME));
         CourseModule courseModule = new CourseModule();
-        int i = 800;
-        courseModule.setEnglishName("Module " + i + " " + PageHelper.englishWords(6));
-        courseModule.setArabicName("الفصل " + i + " " + PageHelper.arabicChar(40));
-        courseModule.setHours("7");
-        courseModule.setMinutes("30");
-        courseInfoPage.addModule(courseModule);
-        Assert.assertTrue(courseInfoPage.toastAddMessage().contains("success"));
-        webDriver.navigate().refresh();
-        Assert.assertTrue(courseInfoPage.courseModuleIsPresented(courseModule.getEnglishName()));
+        for (int i = 1; i <= 10; i++) {
+            courseModule.setEnglishName("Module " + i + " " + PageHelper.englishWords(6));
+            courseModule.setArabicName("الفصل " + i + " " + PageHelper.arabicChar(40));
+            courseModule.setEnglishDesc("Desc for Module " + i + PageHelper.englishWords(100));
+            courseModule.setArabicDesc("وصف للوحدة " + i + PageHelper.arabicChar(400));
+            courseModule.setHours(PageHelper.getRandomNumber(100));
+            courseModule.setMinutes(PageHelper.getRandomNumber(59));
+            courseInfoPage.addModule(courseModule);
+            Assert.assertTrue(courseInfoPage.toastAddMessage().contains("success"));
+            Thread.sleep(1500);
+            Assert.assertTrue(courseInfoPage.courseModuleIsPresented(courseModule.getEnglishName()));
+        }
 
     }
 
     @Test
     void FFODeleteAllModulesInCourse() {
         traningPage.changeBrowseByView();
-        traningPage.goToCourse("he is");
+        traningPage.goToCourse(COURSE_NAME);
         courseInfoPage = new CourseInfoPage(webDriver);
-        Assert.assertTrue(courseInfoPage.headCourseName().contains("he is"));
+        Assert.assertTrue(courseInfoPage.headCourseName().contains(COURSE_NAME));
         while (courseInfoPage.NumberOfModulesPresented() > 0) {
             System.out.println("Still modules Presented");
             courseInfoPage.deleteModule(0);
@@ -124,16 +127,12 @@ public class TraningTests extends TestBase {
             CourseModule courseModule = new CourseModule();
             courseModule.setEnglishName("Module " + i + " " + PageHelper.englishWords(6));
             courseModule.setArabicName("الفصل " + i + " " + PageHelper.arabicChar(40));
-            Random random = new Random();
-            int hours = random.nextInt(100);
-            courseModule.setHours(Integer.toString(hours));
-            int minutes = random.nextInt(59);
-            courseModule.setMinutes(Integer.toString(minutes));
+            courseModule.setHours(PageHelper.getRandomNumber(100));
+            courseModule.setMinutes(PageHelper.getRandomNumber(59));
             courseModule.setEnglishDesc("Desc for Module " + i + '\n' + PageHelper.englishParagraph(2));
             courseModule.setArabicDesc("وصف الملخص" + i + "\n" + PageHelper.arabicChar(1000));
             courseInfoPage.addModule(courseModule);
             Assert.assertTrue(courseInfoPage.toastAddMessage().contains("success"));
-            //webDriver.navigate().refresh();
         }
 
 

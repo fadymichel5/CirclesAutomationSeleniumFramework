@@ -3,6 +3,8 @@ package Helper;
 import com.thedeanda.lorem.Lorem;
 import com.thedeanda.lorem.LoremIpsum;
 
+import java.util.Random;
+
 public class PageHelper {
 
     static Lorem lorem = LoremIpsum.getInstance();
@@ -65,6 +67,12 @@ public class PageHelper {
 
     public static String englishWords(int num) {
         return lorem.getWords(num - 1, num + 1);
+    }
+
+    public static String getRandomNumber(int max) {
+        Random random = new Random();
+        int hours = random.nextInt(max);
+        return String.valueOf(hours);
     }
 
 }
