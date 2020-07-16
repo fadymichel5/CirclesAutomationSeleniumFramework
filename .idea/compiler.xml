@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CirclesAutomationSeleniumFramework" />
+        <module name="webdrive_java" />
         <module name="testauto1" />
+        <module name="CirclesAutomationSeleniumFramework" />
       </profile>
     </annotationProcessing>
   </component>

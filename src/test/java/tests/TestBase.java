@@ -11,13 +11,9 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-import java.util.concurrent.TimeUnit;
-
 
 public class TestBase {
-    public static WebDriver webDriver;
-    String fadyITFFOUSER_mail ="fady.michel6@gmail.com";
-    String fadyITFFOUSER_pass = "P@ssw0rdd";
+    static WebDriver webDriver;
 
     @BeforeSuite
     @Parameters({"browser"})
@@ -25,9 +21,7 @@ public class TestBase {
         if(browser.equalsIgnoreCase("chrome")){
             System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
-            //options.addArguments("start-maximized");
             options.addArguments("--disable-extensions");
-            //options.addArguments("--auto-open-devtools-for-tabs");
             webDriver= new ChromeDriver(options);
         }else if(browser.equalsIgnoreCase("firefox")){
             System.setProperty("webdriver.gecko.driver","drivers/geckodriver.exe");
@@ -40,9 +34,9 @@ public class TestBase {
         }
 
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); // Wait for 30 seconds
-        webDriver.get("https://circlesqc.bnsights.com/");
-        //loginPage = new LoginPage(webDriver);
+        //webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); // Wait for 30 seconds
+        webDriver.get("https://google.com/");
+
     }
 
 
